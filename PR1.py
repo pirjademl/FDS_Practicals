@@ -1,5 +1,5 @@
 # IN second year engineering computer engineerinng class of M students set of A students play cricket and set of B student play badminton .
-#  Write a python program to find and display 
+#  write a python program to find and display 
 # 1 Set of students who play either cricket or badminton or both 
 # 2 set if stuednt who play both cricket and badminton a intersection b
 # 3 set of students who only play cricket 
