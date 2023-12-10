@@ -28,11 +28,7 @@ def searchSet(arr,key):
                 return 1
             else:   
                 return 0
-def findIntersection(arr1,arr2,arr3):
-        for i in range(len(arr1)):
-            flag=searchSet(arr2,arr1[i])
-            if flag==1:
-                arr3.append(arr1[i])
+
 
 def findUnion(arr1,arr2,arr3):
     for i in range(len(arr1)):
@@ -53,9 +49,9 @@ def findDiffernence(arr1,arr2,arr3):
             arr3.append(arr1[i])
             
 def main():
-    groupA=[]
-    groupB=[]
-    groupC=[]
+    groupA=[]   # for cricket
+    groupB=[]   # for badminton
+    groupC=[]   #
     print("\n Enter 1 to store the information")
     print("\n enter 2 to find out list of student who plays cricket and badminton both  ")
     print("\n 3 list of  students who plays either  cricket or  badminton   ")
