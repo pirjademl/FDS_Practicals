@@ -1,105 +1,114 @@
-# IN second year engineering computer engineerinng class of M students set of A students play cricket and set of B student play badminton .
+# IN second year  computer engineerinng class of M students set of A students play cricket and set of B student play badminton .
 #  write a python program to find and display 
 # 1 Set of students who play either cricket or badminton or both 
-# 2 set if stuednt who play both cricket and badminton a intersection b
+# 2 set of stuednt who play both cricket and badminton a intersection b
 # 3 set of students who only play cricket 
 # 4 set of students who only play badminton 
 # 3 set of students who neither play cricket nor badminton 
-
-def accept_set(A,str):
-    n=int(input("Enter the total no of student who play %s:"%str)) 
+def accept(arr,str):
+    n=int(input("Enter no of student who play %s"%str))
     for i in range(n):
-        nameOfStudent=input("Enter name of the student %d who play %s:"%(i+1),str)
-        A.append(nameOfStudent)
-    print("set accepted successfully ")
+        studentDetails=input("Enter name of the student who play %s:"%str)
+        arr.append(studentDetails)
+    print("Details accepted Successfully")
 
-def displaySet(A,str):
-    n=len(A);
-    if n==0:
-        print("\n group of student who play %s{ }"%str)
+def display(arr,str):
+    if(len(arr)==0):
+        print("\n group of student who play  %s{}"%str)
     else:
-        print("Group of students who play %s"%str, end='')
-        for i in range(n-1):
-            print("%s,"%A[i] ,end='')
-        print("%s,"%A[n-1] ,end='')
+        print("\n group of student who play %s"%str)
+        for i in range(len(arr)):
+            print(arr[i])
+def searchSet(arr,key):
+    if len(arr)==0:
+        return
+    else:
+        for i in range(len(arr)):
+            if(arr[i]==key):
+                return 1
+            else:   
+                return 0
+def findIntersection(arr1,arr2,arr3):
+        for i in range(len(arr1)):
+            flag=searchSet(arr2,arr1[i])
+            if flag==1:
+                arr3.append(arr1[i])
 
-
-def searchSet(arr,keyToFind):
-    for i in range(len(arr)):
-        if (arr[i]==keyToFind):
-            return 1
-        else:
-            return 0
-
-def findIntersection(setA,setB,setC):
-    for i in range(len(setA)):
-        flag=searchSet(setB,setA[i])
-        if(flag==1):
-            setC.append(setA[i])
-
-
-# function for finding the difference 
-def findDifference(setA,setB,setC):
-    for i in range(len(setA)):
-        flag=searchSet(setB,setA[i])
-        if(flag==0):
-            setC.append(setA[i])
-
-# function for findin the union 
-def findUnion(setA,setB,setC):
-    for i in range(len(setA)):
-        setC.append(setA[i])
-    for i in range(len(setB)):
-        flag=searchSet(setA,setB[i])
-        if(flag==0):
-            setC.append(setB[i])
-
+def findUnion(arr1,arr2,arr3):
+    for i in range(len(arr1)):
+        arr3.append(arr1[i])
+    for i in range(len(arr2)):
+        flag=searchSet(arr1,arr2[i])
+        if flag==0:
+            arr3.append(arr2[i])
+def findIntersection(arr1,arr2,arr3):
+    for i in range(len(arr1)):
+        flag=searchSet(arr2,arr1[i])
+        if flag==1:
+            arr3.append(arr1[i])
+def findDiffernence(arr1,arr2,arr3):
+    for i in range(len(arr1)):
+        flag=searchSet(arr2,arr1[i])
+        if flag==0:
+            arr3.append(arr1[i])
+            
 def main():
     groupA=[]
     groupB=[]
     groupC=[]
-    while True:
-        print("\n 1 Accept the information")
-        print("\n 2 List of student who play both cricket and badminton")
-        print("\n 3 List of student who play either cricket or badminton")
-        print("\n 4 List of student who play neither cricket or badminton")
-        print("\n 5 List of student who play  cricket or football but not badminton")
-        print("\n 6 Exit")
+    print("\n Enter 1 to store the information")
+    print("\n enter 2 to find out list of student who plays cricket and badminton both  ")
+    print("\n 3 list of  students who plays either  cricket or  badminton   ")
+    print("\n 4 list of  students who plays neither cricket nor badminton   ")
+    print("\n 5 List of student who play  cricket or football but not badminton")
+    print("\n 6 exit")
+    groupR=[]
+    while(True):
         ch=int(input("Enter your choice"))
-        groupR=[]
         if ch==6:
-            print("End of the program")
+            print("Program Finished")
         elif ch==1:
-            accept_set(groupA,"cricket")
-            accept_set(groupB,"badminton")
-            accept_set(groupC,"football")
-            displaySet(groupA,"cricket")
-            displaySet(groupB,"badminton")
-            displaySet(groupC,"football")
+                accept(groupA,"cricket")
+                accept(groupB,"badminton")
+                accept(groupC,"football")
+                display(groupA,"cricket")
+                display(groupB,"badminton")
+                display(groupC,"football")
+                
         elif ch==2:
-            displaySet(groupA,"cricket")
-            displaySet(groupB,"badminton")
-            findIntersection(groupA,groupB,groupC)
-            displaySet(groupR,"both cricket and badminton")
+            display(groupA,"cricket")
+            display(groupB,"badminton")
+            findIntersection(groupA,groupB,groupR)
+            display(groupR,"both Criket and badminto")
         elif ch==3:
-            displaySet(groupA,"cricket")
-            displaySet(groupB,"badminton")
-            R1=[]
-            findUnion(groupA,groupB,R1)
-            R2=[]
-            findIntersection(groupA,groupB,R2)
-            findDifference(R1,R2,groupR)
-            displaySet(groupR,"either cricket or badminton but not both")
+            display(groupA,"Cricket")
+            display(groupB,"badminton")
+            unionArray=[]
+            findUnion(groupA,groupB,unionArray)
+            intesectionArray=[]
+            findIntersection(groupA,groupB,intesectionArray)
+            diff=[]
+            findDiffernence(unionArray,intesectionArray,diff)
+            display(diff,"student play either cricket or badminton but but not both ")
         elif ch==4:
-            displaySet(groupA,"cricket")
-            displaySet(groupB,"badminton")
-            displaySet(groupC,"football")
-            R1=[]
-            findUnion(groupA,groupB,R1)
-            findDifference(groupC,R1,groupR)
-            displaySet(groupR,"neither cricket nor badminton")
-            print("Number of student who play neither cricket nor badminton is %d"%len(groupR)) 
+            display(groupA,"Cricket")
+            display(groupB,"Badminton")
+            display(groupC,"football")
+            unionArray=[]
+            findUnion(groupA,groupB,unionArray)
+            diffarray=[]
+            findDiffernence(groupC,unionArray,diffarray)
+            display(diffarray,"students who play neither cricket nor badminton")
+        elif ch==5:
+            display(groupA,"Cricket")
+            display(groupC,"football")
+            unionArray=[]
+            findUnion(groupA,groupC,unionArray)
+            diffarr=[]
+            findDiffernence(unionArray,groupB,diffarr)
+            print("student who play either cricket or football but not badminton ",diffarr)
 
 
-if __name__ == "__main__":
+
+if __name__=="__main__":
     main()
